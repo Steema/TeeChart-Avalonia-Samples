@@ -1,0 +1,37 @@
+﻿<Window x:Class="XamlAvaloniaDemo.MainWindow"
+        xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonedit="clr-namespace:AvaloniaEdit;assembly=AvaloniaEdit"
+        mc:Ignorable="d"
+        Title="TeeChart.Xaml.Avalonia Demo" Width="1280" Height="720"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <ListBox Grid.Column="0" Grid.RowSpan="3" Items="{Binding Demos}"
+             SelectedItem="{Binding SelectedDemo, Mode=TwoWay}" />
+    <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding DemoControl}" Margin="1" />
+    <GridSplitter Grid.Column="1" Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+    <DockPanel Grid.Column="1" Grid.Row="2">
+      <ListBox DockPanel.Dock="Right" Items="{Binding SelectedDemo.Value}"
+               SelectedItem="{Binding File, Mode=TwoWay}"
+               IsVisible="{Binding FileSelectVisible}" />
+      <avalonedit:TextEditor SyntaxHighlighting="C#" x:Name="CodeEditor" IsReadOnly="True">
+        <!--<avalonedit:TextEditor.ContextMenu>
+          <ContextMenu>
+            <MenuItem Header="Copy" Command="Copy" />
+          </ContextMenu>
+        </avalonedit:TextEditor.ContextMenu>-->
+      </avalonedit:TextEditor>
+    </DockPanel>
+  </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="XamlAvaloniaDemo.Demos.BindingObservableCollection"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:teechart="clr-namespace:TeeChart.Xaml.Avalonia;assembly=TeeChart.Xaml.Avalonia"
+             xmlns:series="clr-namespace:TeeChart.Xaml.Avalonia.Series;assembly=TeeChart.Xaml.Avalonia"
+             mc:Ignorable="d"
+             DataContext="{Binding BindingObservableCollectionViewModel, Source={StaticResource Locator}}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <teechart:TChart>
+      <teechart:TChart.Legend>
+        <teechart:Legend Visible="False" />
+      </teechart:TChart.Legend>
+      <series:Points ItemsSource="{Binding DataArray}" XPath="A" YPath="B" />
+    </teechart:TChart>
+    <DockPanel Grid.Column="1">
+      <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+        <Button Padding="2" Margin="0,4,4,4" Command="{Binding AddDataCommand}">Add</Button>
+      </StackPanel>
+      <ListBox Items="{Binding DataArray}" />
+    </DockPanel>
+  </Grid>
+</UserControl>

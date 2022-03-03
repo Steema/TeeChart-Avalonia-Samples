@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="XamlAvaloniaDemo.Demos.ManualValuesColors"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:teechart="clr-namespace:TeeChart.Xaml.Avalonia;assembly=TeeChart.Xaml.Avalonia"
+             xmlns:series="clr-namespace:TeeChart.Xaml.Avalonia.Series;assembly=TeeChart.Xaml.Avalonia"
+             mc:Ignorable="d">
+  <teechart:TChart>
+    <series:Bar>
+      <series:SeriesData Y="42" Color="Red" />
+      <series:SeriesData Y="42" Color="Orange" />
+      <series:SeriesData Y="42" Color="Yellow" />
+      <series:SeriesData Y="42" Color="Green" />
+      <series:SeriesData Y="42" Color="Blue" />
+      <series:SeriesData Y="42" Color="Purple" />
+    </series:Bar>
+  </teechart:TChart>
+</UserControl>

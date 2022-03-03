@@ -1,0 +1,14 @@
+<Application x:Class="XamlAvaloniaDemo.App"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:XamlAvaloniaDemo.ViewModel">
+    <Application.Styles>
+        <FluentTheme Mode="Light" />
+        <StyleInclude Source="avares://AvaloniaEdit/AvaloniaEdit.xaml" />
+    </Application.Styles>
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
