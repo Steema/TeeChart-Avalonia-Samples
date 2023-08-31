@@ -1,11 +1,11 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 
 namespace XamlAvaloniaDemo.Demos
 {
-  public class BindingObservableCollectionViewModel : ViewModelBase
+  public class BindingObservableCollectionViewModel : ObservableRecipient
   {
     public ObservableCollection<Data> DataArray { get; }
 

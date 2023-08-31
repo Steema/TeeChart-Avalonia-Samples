@@ -1,11 +1,11 @@
 ﻿using System;
 using Avalonia.Threading;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using TeeChart.Xaml.Avalonia.Series;
 
 namespace XamlAvaloniaDemo.Demos
 {
-  public class BindingDataPropertiesViewModel : ViewModelBase
+  public class BindingDataPropertiesViewModel : ObservableRecipient
   {
     private const int Height = 20;
     private const int Amount = 100;
@@ -44,9 +44,10 @@ namespace XamlAvaloniaDemo.Demos
       }
     }
 
-    public override void Cleanup()
+    protected override void OnDeactivated()
     {
-      base.Cleanup();
+      base.OnDeactivated();
+
 
       _timer.Stop();
       _timer.Tick -= OnTick;

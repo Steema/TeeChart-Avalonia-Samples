@@ -3,16 +3,16 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using GalaSoft.MvvmLight;
 using AvaloniaEdit;
 using AvaloniaEdit.Highlighting;
+using CommunityToolkit.Mvvm.ComponentModel;
 using XamlAvaloniaDemo.ViewModel;
 
 namespace XamlAvaloniaDemo
 {
   public partial class MainWindow : Window
   {
-    private TextEditor CodeEditor;
+    private TextEditor _codeEditor;
     
     public MainWindow()
     {
@@ -21,11 +21,11 @@ namespace XamlAvaloniaDemo
       this.AttachDevTools();
 #endif
 
-      CodeEditor = this.FindControl<TextEditor>("CodeEditor");
-      VisualStudioStyle(CodeEditor);
+      _codeEditor = this.FindControl<TextEditor>("CodeEditor");
+      VisualStudioStyle(_codeEditor);
 
       UpdateCodeEditor((MainViewModel)DataContext);
-      ((ViewModelBase)DataContext).PropertyChanged += (sender, args) =>
+      ((ObservableRecipient)DataContext).PropertyChanged += (sender, args) =>
       {
         if (args.PropertyName == "File")
         {
@@ -43,8 +43,8 @@ namespace XamlAvaloniaDemo
     {
       if (vm.File == null) return;
       var extension = Path.GetExtension(vm.File);
-      CodeEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(extension);
-      CodeEditor.Load(Path.Combine("Demos", vm.File));
+      _codeEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(extension);
+      _codeEditor.Load(Path.Combine("Demos", vm.File));
     }
 
     private void VisualStudioStyle(TextEditor editor)

@@ -17,12 +17,12 @@
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <ListBox Grid.Column="0" Grid.RowSpan="3" Items="{Binding Demos}"
+    <ListBox Grid.Column="0" Grid.RowSpan="3" ItemsSource="{Binding Demos}"
              SelectedItem="{Binding SelectedDemo, Mode=TwoWay}" />
     <ContentControl Grid.Column="1" Grid.Row="0" Content="{Binding DemoControl}" Margin="1" />
     <GridSplitter Grid.Column="1" Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
     <DockPanel Grid.Column="1" Grid.Row="2">
-      <ListBox DockPanel.Dock="Right" Items="{Binding SelectedDemo.Value}"
+      <ListBox DockPanel.Dock="Right" ItemsSource="{Binding SelectedDemo.Value}"
                SelectedItem="{Binding File, Mode=TwoWay}"
                IsVisible="{Binding FileSelectVisible}" />
       <avalonedit:TextEditor SyntaxHighlighting="C#" x:Name="CodeEditor" IsReadOnly="True">

@@ -1,50 +1,51 @@
 using System;
-using System.Linq;
-using CommonServiceLocator;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Extensions.DependencyInjection;
 using XamlAvaloniaDemo.Demos;
+
 
 namespace XamlAvaloniaDemo.ViewModel
 {
   public class ViewModelLocator
   {
-    public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+    public MainViewModel Main => _serviceLocator.GetService<MainViewModel>();
 
     public BindingObservableCollectionViewModel BindingObservableCollectionViewModel
-      => ServiceLocator.Current.GetInstance<BindingObservableCollectionViewModel>();
+      => _serviceLocator.GetService<BindingObservableCollectionViewModel>();
 
     public BindingDataPropertiesViewModel BindingDataPropertiesViewModel
-      => ServiceLocator.Current.GetInstance<BindingDataPropertiesViewModel>();
+      => _serviceLocator.GetService<BindingDataPropertiesViewModel>();
+
+    private IServiceProvider _serviceLocator;
 
     public ViewModelLocator()
     {
-      ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-      RegisterViewModels();
+      _serviceLocator = RegisterViewModels();
     }
 
-    private static void RegisterViewModels()
+    private static IServiceProvider RegisterViewModels()
     {
-      SimpleIoc.Default.Register<MainViewModel>();
-      SimpleIoc.Default.Register<BindingObservableCollectionViewModel>();
-      SimpleIoc.Default.Register<BindingDataPropertiesViewModel>();
+      var services = new ServiceCollection();
+
+      services.AddSingleton<MainViewModel>();
+      services.AddSingleton<BindingObservableCollectionViewModel>();
+      services.AddSingleton<BindingDataPropertiesViewModel>();
+      return services.BuildServiceProvider();
     }
 
-    public static void Cleanup()
-    {
-      CleanupViewModel(typeof(BindingObservableCollectionViewModel));
-      CleanupViewModel(typeof(BindingDataPropertiesViewModel));
-      SimpleIoc.Default.Reset();
-      RegisterViewModels();
-    }
+    //public static void Cleanup()
+    //{
+    //  CleanupViewModel(typeof(BindingObservableCollectionViewModel));
+    //  CleanupViewModel(typeof(BindingDataPropertiesViewModel));
+    //  //Ioc.Default.Reset();
+    //  RegisterViewModels();
+    //}
 
     private static void CleanupViewModel(Type type)
     {
-      foreach (var vm in SimpleIoc.Default.GetAllCreatedInstances(type).Cast<ViewModelBase>())
-      {
-        vm.Cleanup();
-      }
+      //foreach (var vm in Ioc.Default.GetAllCreatedInstances(type).Cast<ViewModelBase>())
+      //{
+      //  vm.Cleanup();
+      //}
     }
   }
 }

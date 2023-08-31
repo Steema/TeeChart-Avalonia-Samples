@@ -22,7 +22,7 @@
       <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
         <Button Padding="2" Margin="0,4,4,4" Command="{Binding AddDataCommand}">Add</Button>
       </StackPanel>
-      <ListBox Items="{Binding DataArray}" />
+      <ListBox ItemsSource="{Binding DataArray}" />
     </DockPanel>
   </Grid>
 </UserControl>

@@ -1,19 +1,24 @@
 using System;
 using System.Linq;
 using Avalonia.Controls;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using XamlAvaloniaDemo.Demos;
 
 namespace XamlAvaloniaDemo.ViewModel
 {
-  public class MainViewModel : ViewModelBase
+  public class MainViewModel : ObservableRecipient
   {
     public Demo? SelectedDemo
     {
       get { return _selectedDemo; }
       set
       {
-        if (Set(() => SelectedDemo, ref _selectedDemo, value))
+        //if (Set(() => SelectedDemo, ref _selectedDemo, value))
+        //{
+        //  UpdateDemo();
+        //}
+
+        if (SetProperty(ref _selectedDemo, value, true))
         {
           UpdateDemo();
         }
@@ -25,7 +30,11 @@ namespace XamlAvaloniaDemo.ViewModel
     public UserControl DemoControl
     {
       get { return _demoControl; }
-      set { Set(() => DemoControl, ref _demoControl, value); }
+      set 
+      {
+        //Set(() => DemoControl, ref _demoControl, value);
+        SetProperty(ref _demoControl, value, true);
+      }
     }
 
     private UserControl _demoControl;
@@ -35,7 +44,11 @@ namespace XamlAvaloniaDemo.ViewModel
     public string File
     {
       get { return _file; }
-      set { Set(() => File, ref _file, value); }
+      set 
+      {
+        //Set(() => File, ref _file, value); 
+        SetProperty(ref _file, value, true);
+      }
     }
 
     private string _file;
@@ -43,7 +56,11 @@ namespace XamlAvaloniaDemo.ViewModel
     public bool FileSelectVisible
     {
       get { return _fileSelectVisible; }
-      set { Set(() => FileSelectVisible, ref _fileSelectVisible, value); }
+      set 
+      { 
+        //Set(() => FileSelectVisible, ref _fileSelectVisible, value);
+        SetProperty(ref _fileSelectVisible, value, true);
+      }
     }
 
     private bool _fileSelectVisible;
@@ -107,7 +124,7 @@ namespace XamlAvaloniaDemo.ViewModel
 
     private void UpdateDemo()
     {
-      ViewModelLocator.Cleanup();
+      //ViewModelLocator.Cleanup();
       if (!SelectedDemo.HasValue) return;
 
       File = SelectedDemo.Value.Files.FirstOrDefault();
