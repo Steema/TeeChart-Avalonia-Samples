@@ -1,6 +1,7 @@
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Steema.TeeChart.Styles;
 
 namespace AvaloniaTest
 {

@@ -113,5 +113,120 @@
                 </series:ColorGrid>
             </teechart:TChart>
         </TabItem>
+        <TabItem Header="Surface Series">
+            <teechart:TChart>
+                 <teechart:TChart.Header>
+                    <teechart:Title Text="Surface Series XAML content" />
+                 </teechart:TChart.Header>
+                 <teechart:TChart.Aspect>
+                   <teechart:Aspect View3D="True" />
+                 </teechart:TChart.Aspect>
+                <series:Surface Name="Surface1" StrokeThickness="1" UsePalette="True" UseColorRange="True" PaletteStyle="Rainbow">
+                   <series:Surface.SideLines>
+                      <SolidColorBrush Color="DarkBlue" Opacity="0.2"/>
+                   </series:Surface.SideLines>
+                   <series:Series3DData X="1" Y="0.175" Z="1" />
+                   <series:Series3DData X="2" Y="-0.064" Z="1" />
+                   <series:Series3DData X="3" Y="-0.207" Z="1" />
+                   <series:Series3DData X="4" Y="-0.123" Z="1" />
+                   <series:Series3DData X="5" Y="0.111" Z="1" />
+                   <series:Series3DData X="6" Y="0.28" Z="1" />
+                   <series:Series3DData X="7" Y="0.229" Z="1" />
+                   <series:Series3DData X="8" Y="0.004" Z="1" />
+                   <series:Series3DData X="9" Y="-0.188" Z="1" />
+                   <series:Series3DData X="10" Y="-0.17" Z="1" />
+                   <series:Series3DData X="1" Y="-0.244" Z="2" />
+                   <series:Series3DData X="2" Y="-0.483" Z="2" />
+                   <series:Series3DData X="3" Y="-0.627" Z="2" />
+                   <series:Series3DData X="4" Y="-0.543" Z="2" />
+                   <series:Series3DData X="5" Y="-0.308" Z="2" />
+                   <series:Series3DData X="6" Y="-0.139" Z="2" />
+                   <series:Series3DData X="7" Y="-0.191" Z="2" />
+                   <series:Series3DData X="8" Y="-0.416" Z="2" />
+                   <series:Series3DData X="9" Y="-0.607" Z="2" />
+                   <series:Series3DData X="10" Y="-0.589" Z="2" />
+                   <series:Series3DData X="1" Y="-0.435" Z="3" />
+                   <series:Series3DData X="2" Y="-0.674" Z="3" />
+                   <series:Series3DData X="3" Y="-0.818" Z="3" />
+                   <series:Series3DData X="4" Y="-0.734" Z="3" />
+                   <series:Series3DData X="5" Y="-0.499" Z="3" />
+                   <series:Series3DData X="6" Y="-0.33" Z="3" />
+                   <series:Series3DData X="7" Y="-0.382" Z="3" />
+                   <series:Series3DData X="8" Y="-0.607" Z="3" />
+                   <series:Series3DData X="9" Y="-0.798" Z="3" />
+                   <series:Series3DData X="10" Y="-0.78" Z="3" />
+                   <series:Series3DData X="1" Y="-0.138" Z="4" />
+                   <series:Series3DData X="2" Y="-0.378" Z="4" />
+                   <series:Series3DData X="3" Y="-0.521" Z="4" />
+                   <series:Series3DData X="4" Y="-0.437" Z="4" />
+                   <series:Series3DData X="5" Y="-0.203" Z="4" />
+                   <series:Series3DData X="6" Y="-0.033" Z="4" />
+                   <series:Series3DData X="7" Y="-0.085" Z="4" />
+                   <series:Series3DData X="8" Y="-0.31" Z="4" />
+                   <series:Series3DData X="9" Y="-0.501" Z="4" />
+                   <series:Series3DData X="10" Y="-0.483" Z="4" />
+                   <series:Series3DData X="1" Y="0.487" Z="5" />
+                   <series:Series3DData X="2" Y="0.247" Z="5" />
+                   <series:Series3DData X="3" Y="0.104" Z="5" />
+                   <series:Series3DData X="4" Y="0.188" Z="5" />
+                   <series:Series3DData X="5" Y="0.422" Z="5" />
+                   <series:Series3DData X="6" Y="0.592" Z="5" />
+                   <series:Series3DData X="7" Y="0.54" Z="5" />
+                   <series:Series3DData X="8" Y="0.315" Z="5" />
+                   <series:Series3DData X="9" Y="0.124" Z="5" />
+                   <series:Series3DData X="10" Y="0.142" Z="5" />
+                   <series:Series3DData X="1" Y="1.003" Z="6" />
+                   <series:Series3DData X="2" Y="0.764" Z="6" />
+                   <series:Series3DData X="3" Y="0.62" Z="6" />
+                   <series:Series3DData X="4" Y="0.704" Z="6" />
+                   <series:Series3DData X="5" Y="0.939" Z="6" />
+                   <series:Series3DData X="6" Y="1.108" Z="6" />
+                   <series:Series3DData X="7" Y="1.056" Z="6" />
+                   <series:Series3DData X="8" Y="0.831" Z="6" />
+                   <series:Series3DData X="9" Y="0.64" Z="6" />
+                   <series:Series3DData X="10" Y="0.658" Z="6" />
+                   <series:Series3DData X="1" Y="1.092" Z="7" />
+                   <series:Series3DData X="2" Y="0.853" Z="7" />
+                   <series:Series3DData X="3" Y="0.709" Z="7" />
+                   <series:Series3DData X="4" Y="0.794" Z="7" />
+                   <series:Series3DData X="5" Y="1.028" Z="7" />
+                   <series:Series3DData X="6" Y="1.197" Z="7" />
+                   <series:Series3DData X="7" Y="1.145" Z="7" />
+                   <series:Series3DData X="8" Y="0.921" Z="7" />
+                   <series:Series3DData X="9" Y="0.729" Z="7" />
+                   <series:Series3DData X="10" Y="0.747" Z="7" />
+                   <series:Series3DData X="1" Y="0.842" Z="8" />
+                   <series:Series3DData X="2" Y="0.602" Z="8" />
+                   <series:Series3DData X="3" Y="0.459" Z="8" />
+                   <series:Series3DData X="4" Y="0.543" Z="8" />
+                   <series:Series3DData X="5" Y="0.777" Z="8" />
+                   <series:Series3DData X="6" Y="0.946" Z="8" />
+                   <series:Series3DData X="7" Y="0.895" Z="8" />
+                   <series:Series3DData X="8" Y="0.67" Z="8" />
+                   <series:Series3DData X="9" Y="0.479" Z="8" />
+                   <series:Series3DData X="10" Y="0.497" Z="8" />
+                   <series:Series3DData X="1" Y="0.657" Z="9" />
+                   <series:Series3DData X="2" Y="0.418" Z="9" />
+                   <series:Series3DData X="3" Y="0.274" Z="9" />
+                   <series:Series3DData X="4" Y="0.358" Z="9" />
+                   <series:Series3DData X="5" Y="0.593" Z="9" />
+                   <series:Series3DData X="6" Y="0.762" Z="9" />
+                   <series:Series3DData X="7" Y="0.71" Z="9" />
+                   <series:Series3DData X="8" Y="0.485" Z="9" />
+                   <series:Series3DData X="9" Y="0.294" Z="9" />
+                   <series:Series3DData X="10" Y="0.312" Z="9" />
+                   <series:Series3DData X="1" Y="0.882" Z="10" />
+                   <series:Series3DData X="2" Y="0.643" Z="10" />
+                   <series:Series3DData X="3" Y="0.499" Z="10" />
+                   <series:Series3DData X="4" Y="0.583" Z="10" />
+                   <series:Series3DData X="5" Y="0.818" Z="10" />
+                   <series:Series3DData X="6" Y="0.987" Z="10" />
+                   <series:Series3DData X="7" Y="0.935" Z="10" />
+                   <series:Series3DData X="8" Y="0.71" Z="10" />
+                   <series:Series3DData X="9" Y="0.519" Z="10" />
+                   <series:Series3DData X="10" Y="0.537" Z="10" />                   
+                </series:Surface>
+            </teechart:TChart>
+        </TabItem>
     </TabControl>
 </Window>
