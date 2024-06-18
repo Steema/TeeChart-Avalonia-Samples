@@ -240,9 +240,9 @@
                     <teechart:Title Text="Candle Series - datetime with weekends" />
                 </teechart:TChart.Header>
                 <series:Candle StrokeThickness="1" Style="CandleStick" Name="Candle1" UpCloseColor="lightgreen" DownCloseColor="red">
-					<!--HighLowPen pending next update <series:Candle.HighLowPen>
+					<series:Candle.HighLowPen>
 						<SolidColorBrush Color="Black" Opacity="1.0"/>
-					</series:Candle.HighLowPen>-->
+					</series:Candle.HighLowPen>
 					<series:SeriesOHLCData X="45409" Open="2" High="6" Low="0" Close="1" />
 					<series:SeriesOHLCData X="45410" Open="1" High="4" Low="0.8" Close="3" />
 					<series:SeriesOHLCData X="45413" Open="2" High="7" Low="0" Close="3" />
