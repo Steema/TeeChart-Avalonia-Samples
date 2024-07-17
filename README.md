@@ -9,7 +9,7 @@ For more information visit [https://steema.com/product/net_avalonia](https://ste
 
 ![screenshot](https://www.steema.com/uploads/products/composite.png "Charts for Avalonia")
 
-### Avalonia Nuget Package:
+### Nuget Package:
 [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.Avalonia](https://www.nuget.org/packages/Steema.TeeChart.NET.Avalonia)
 
 ### Useful pages
