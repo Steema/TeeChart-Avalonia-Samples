@@ -30,17 +30,17 @@ For more information visit [https://steema.com/product/net_avalonia](https://ste
 <br>
 Other companion products that can use common source code to extend your projects:
 
-#### TeeChart for Xamarin.Forms:
-- [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.Xamarin.Forms/](https://www.nuget.org/packages/Steema.TeeChart.NET.Xamarin.Forms)
-- [Examples on github](https://github.com/Steema/TeeChart-NET-Pro-Samples/tree/main/Xamarin)
+#### TeeChart .NET for Blazor:
+- [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.Blazor/](https://www.nuget.org/packages/Steema.TeeChart.NET.Blazor)
+- [Examples on github](https://github.com/Steema/TeeChart-NET-Pro-Samples/tree/main/Blazor)
 
 #### TeeChart for .NET MAUI:
 - [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.MAUI/](https://www.nuget.org/packages/Steema.TeeChart.NET.MAUI)
 - [Examples on github](https://github.com/Steema/TeeChart-NET-Pro-Samples/tree/main/MAUI)
 
-#### TeeChart .NET for Blazor:
-- [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.Blazor/](https://www.nuget.org/packages/Steema.TeeChart.NET.Blazor)
-- [Examples on github](https://github.com/Steema/TeeChart-NET-Pro-Samples/tree/main/Blazor)
+#### TeeChart for Xamarin.Forms:
+- [Nuget: https://www.nuget.org/packages/Steema.TeeChart.NET.Xamarin.Forms/](https://www.nuget.org/packages/Steema.TeeChart.NET.Xamarin.Forms)
+- [Examples on github](https://github.com/Steema/TeeChart-NET-Pro-Samples/tree/main/Xamarin)
 
 
 ### Support and Feedback
