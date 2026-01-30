@@ -23,7 +23,7 @@ For more information visit [https://steema.com/product/net_avalonia](https://ste
 ### Other Examples:
 
 - [Examples, Steema on Github](https://github.com/Steema),
-  [Examples Winform](https://github.com/Steema/TeeChart-for-.NET-CSharp-WinForms-samples),
+  [Examples WinForms](https://github.com/Steema/TeeChart-for-.NET-CSharp-WinForms-samples),
   [Examples Wpf](https://github.com/Steema/TeeChart-for-.NET-CSharp-WPF-samples)
 
 
