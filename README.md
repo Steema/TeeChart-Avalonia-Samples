@@ -24,7 +24,7 @@ For more information visit [https://steema.com/product/net_avalonia](https://ste
 
 - [Examples, Steema on Github](https://github.com/Steema),
   [Examples WinForms](https://github.com/Steema/TeeChart-for-.NET-CSharp-WinForms-samples),
-  [Examples Wpf](https://github.com/Steema/TeeChart-for-.NET-CSharp-WPF-samples)
+  [Examples WPF](https://github.com/Steema/TeeChart-for-.NET-CSharp-WPF-samples)
 
 
 <br>
