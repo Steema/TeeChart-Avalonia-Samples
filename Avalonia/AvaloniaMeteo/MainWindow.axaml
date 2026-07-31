@@ -1,0 +1,304 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:teechart="clr-namespace:Steema.TeeChart.Avalonia;assembly=TeeChart.Avalonia"
+		xmlns:local="clr-namespace:AvaloniaMeteo"
+		xmlns:models="clr-namespace:AvaloniaMeteo.MODELS"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaMeteo.MainWindow"
+		Title="Weather Forecast" Height="838" Width="1517" WindowState="Maximized" Background="#F5F7FA">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<Grid Grid.Row="0" Background="#2C3E50" Height="60">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock Text="☁️ Weather" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+				<TextBlock Text="Forecast" FontSize="20" Foreground="#A0D8FF" Margin="5,0,0,0"/>
+			</StackPanel>
+
+				<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="820">
+				<TextBlock x:Name="lblSearch" Text="The weather in... "
+								   FontSize="20" FontWeight="SemiBold"
+								   Foreground="White"
+								   Margin="0,0,10,0"
+								   TextWrapping="NoWrap"
+								   TextTrimming="CharacterEllipsis"
+								   Effect="{DynamicResource ShadowEffect}" MaxWidth="260" />
+
+				<Grid>
+					<!--Busqueda-->
+					<StackPanel Orientation="Horizontal">
+						<TextBox Name="txtSearch"
+								 Width="280"
+								 Height="36"	 
+								 FontSize="14"
+								 Margin="0,0,10,0"
+								 KeyDown="txtSearch_KeyDown"
+								 TextChanged="txtSearch_TextChanged"
+								 LostFocus="txtSearch_LostFocus"
+								 VerticalContentAlignment="Center"
+								 Padding="12,0">
+							<TextBox.Styles>
+								<Style Selector="TextBox">
+									<Setter Property="CornerRadius" Value="20"/>
+								</Style>
+							</TextBox.Styles>
+						</TextBox>
+						<Button Name="btnSearch" Width="40" Height="36"
+											Content="🔍" FontSize="13"
+											Click="btnSearch_Click_1">
+							<Button.Styles>
+								<Style Selector="Button">
+									<Setter Property="CornerRadius" Value="20"/>
+								</Style>
+							</Button.Styles>
+						</Button>
+					</StackPanel>
+
+					<!-- Popup para sugerencias -->
+					<Popup Name="suggestionsPopup"
+						   PlacementTarget="{Binding ElementName=txtSearch}"
+						   Placement="Bottom"
+						   IsOpen="False">
+
+						<Border Background="White"
+								BorderBrush="#CCCCCC"
+								BorderThickness="1"
+								CornerRadius="8"
+								MaxHeight="200"
+								MinWidth="{Binding #txtSearch.Bounds.Width}">
+
+							<Border.Effect>
+								<DropShadowEffect BlurRadius="8"
+												   OffsetX="2"
+												   OffsetY="2"
+												   Opacity="0.3"/>
+							</Border.Effect>
+
+							<ListBox Name="suggestionsList"
+									 BorderThickness="0"
+									 Background="Transparent"
+									 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+									 ScrollViewer.VerticalScrollBarVisibility="Auto"
+									 PointerReleased="suggestionsList_PointerReleased">
+								<ListBox.ItemTemplate>
+									<DataTemplate DataType="models:Location">
+										<StackPanel Margin="8,4">
+											<TextBlock Text="{Binding Name}"
+													   FontWeight="Bold"
+													   FontSize="13"/>
+
+											<TextBlock Text="{Binding FullLocation}"
+													   FontSize="11"
+													   Foreground="Gray"/>
+										</StackPanel>
+									</DataTemplate>
+								</ListBox.ItemTemplate>
+							</ListBox>
+						</Border>
+					</Popup>
+				</Grid>
+			</StackPanel>
+
+			<!--Selector idioma-->
+			<Menu Grid.Column="2"
+			  Background="Transparent"
+			  VerticalAlignment="Center"
+			  Margin="0,6,20,0" Height="60">
+
+				<Menu.Styles>
+					<Style Selector="MenuItem">
+						<Setter Property="Background" Value="White"/>
+						<Setter Property="Foreground" Value="#2C3E50"/>
+						<Setter Property="Padding" Value="10,8"/>
+						<!-- Ensure menu items have enough height so icons/emoji aren't clipped -->
+						<Setter Property="MinHeight" Value="36"/>
+					</Style>
+				</Menu.Styles>
+
+				<MenuItem Header="🌐" Background="Transparent" Foreground="White" FontSize="16" Padding="8">
+
+					<MenuItem Header="English" Tag="en" IsChecked="True" Name="englishMenuItem" Click="englishMenuItem_Click"/>
+
+					<MenuItem Header="Català" Tag="ca" Name="catalanMenuItem" Click="catalanMenuItem_Click"/>
+
+					<MenuItem Header="Español" Tag="es" Name="spanishMenuItem" Click="spanishMenuItem_Click"/>
+
+				</MenuItem>
+			</Menu>
+		</Grid>
+
+		<Grid Grid.Row="1" Margin="20,20,20,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="230"/>
+				<!-- Panel de ciudades -->
+				<ColumnDefinition Width="*"/>
+				<!-- Panel de datos meteorológicos -->
+				<ColumnDefinition Width="300"/>
+				<!-- Panel de información extra -->
+			</Grid.ColumnDefinitions>
+
+			<!-- Panel de ciudades recientes -->
+			<Border Grid.Column="0" Background="White" CornerRadius="12"
+						  Margin="0,0,20,0" Effect="{DynamicResource ShadowEffect}">
+				<DockPanel>
+					<TextBlock Name="txtRecentCities" DockPanel.Dock="Top" Text="📍Recent cities"
+										 FontWeight="SemiBold" FontSize="16" Margin="15,15,15,5"/>
+					<ListBox Name="lstCities" BorderThickness="0" Margin="0,10,0,0"
+									   SelectionChanged="lstCities_SelectionChanged">
+						<ListBoxItem Content="Girona"/>
+						<ListBoxItem Content="Barcelona"/>
+						<ListBoxItem Content="Birmingham"/>
+						<ListBoxItem Content="Paris"/>
+					</ListBox>
+				</DockPanel>
+			</Border>
+
+			<!--Panel central con información-->
+			<Border Grid.Column="1" Background="White"
+						  CornerRadius="12" Margin="0,0,20,0"
+						  Effect="{DynamicResource ShadowEffect}">
+
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+
+					<Grid Grid.Row="0" Margin="30,20">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<!-- Temperatura e icono -->
+						<Border Grid.Column="0" Background="#F0F9FF" CornerRadius="16"
+											Width="180" Height="180" Padding="20">
+							<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+								<Image Name="imgWeatherIcon" Width="70" Height="70" Margin="0,0,0,10"/>
+								<TextBlock Name="txtTemperature" FontSize="36" FontWeight="Bold"
+														   Foreground="#2C3E50" Text="--ºC"
+														   HorizontalAlignment="Center"/>
+							</StackPanel>
+						</Border>
+						<!-- Información de ubicación -->
+						<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="30,0">
+							<TextBlock Name="txtCity" FontSize="32" FontWeight="Bold"
+													 Foreground="#2C3E50" Text="City"/>
+							<TextBlock Name="txtRegion" FontSize="18" Foreground="#95A5A6"
+													 Text="Province, Country" Margin="0,5,0,15"/>
+
+							<!-- Botones de tiempo -->
+							<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+								<Button Name="btnDays" Content="Forecast by days"
+														Width="150" Margin="0,0,15,0" Click="btnDays_Click"/>
+
+								<Button Name="btnHours" Content="Forecast by hours"
+														Width="150" Margin="0" Click="btnHours_Click"/>
+							</StackPanel>
+						</StackPanel>
+					</Grid>
+
+					<!-- Selector de día específico -->
+					<ComboBox Name="cmbDays" Grid.Row="1" Width="200" Height="36"
+										Margin="30,0,0,20" HorizontalAlignment="Left"
+										VerticalAlignment="Top" FontSize="14"
+										SelectionChanged="cmbDays_SelectionChanged"/>
+
+				</Grid>
+			</Border>
+
+			<!-- Panel de información adicional -->
+			<!-- Panel de información adicional -->
+			<Border Grid.Column="1" Background="White" CornerRadius="12"
+						  Effect="{DynamicResource ShadowEffect}" Grid.ColumnSpan="2" Margin="755,0,0,0">
+
+				<DockPanel>
+					<TextBlock Name="txtInformation" DockPanel.Dock="Top" Text="ℹ️ Information"
+										 FontWeight="SemiBold" FontSize="16" Margin="15"/>
+
+					<StackPanel DockPanel.Dock="Top">
+						<ScrollViewer VerticalScrollBarVisibility="Auto" Padding="15,0,15,0">
+							<TextBlock TextWrapping="Wrap" FontSize="16" Foreground="#5D6D7E" LineHeight="30" Name="txtBlockInformation">
+								Type the name of a city to get its weather forecast.
+								You can change the language from the top menu.
+								See recent cities in the side list.
+							</TextBlock>
+						</ScrollViewer>
+						<ScrollViewer VerticalScrollBarVisibility="Auto" Padding="15,0,15,0">
+							<TextBlock TextWrapping="Wrap" FontSize="14" Foreground="#5D6D7E" LineHeight="30" Name="APIInformation">
+								This demo mode uses a free 3 day forecast.
+								Add a test account via weatherapi.com (button below)
+								for a 14 day free preview of a 10 day forecast.
+							</TextBlock>
+						</ScrollViewer>
+						<Button Content="🌐 Weather API Web" Width="200"
+											Click="BtnVisitWebsite_Click"/>
+
+						<!-- Botón de ir a la web debajo del texto -->
+					</StackPanel>
+				</DockPanel>
+			</Border>
+		</Grid>
+
+		<!-- Sección de gráficos -->
+		<Border Grid.Row="2" Background="White" CornerRadius="12" Margin="20"
+					Effect="{DynamicResource ShadowEffect}">
+
+			<TabControl>
+				<TabItem x:Name="tabTemperature" Header="Temperature">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+						<teechart:TChart Name="ChartTemp" IsVisible="True"
+													 HorizontalAlignment="Stretch"
+													 VerticalAlignment="Stretch"
+													 AfterDraw="ChartTemp_AfterDraw"
+													 Scroll="ChartTemp_Scroll"
+													 Margin="15"
+													 BeforeDrawSeries="ChartTemp_BeforeDrawSeries"/>
+
+						<ScrollBar Name="scrollBarChart"
+											   Orientation="Horizontal"
+											   Grid.Row="1"
+											   Minimum="0"
+											   Maximum="100"
+											   LargeChange="10"
+											   SmallChange="1"
+											   Value="0"
+											   Margin="15,0,15,15"
+											   Height="20"
+											   Scroll="scrollBarChart_Scroll"/>
+					</Grid>
+				</TabItem>
+
+				<TabItem x:Name="tabTemperatureAndHumidity" Header="Temperature/Humidity">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*" />
+							<RowDefinition Height="Auto" />
+						</Grid.RowDefinitions>
+
+						<teechart:TChart Name="ChartTempAndHumidity" IsVisible="True"
+													 HorizontalAlignment="Stretch"
+													 VerticalAlignment="Stretch"
+													 Margin="15"/>
+					</Grid>
+				</TabItem>
+			</TabControl>
+		</Border>
+	</Grid>
+</Window>
